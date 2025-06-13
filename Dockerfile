@@ -3,9 +3,13 @@ FROM python:3.11-slim
 WORKDIR /app
 COPY . /app
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-RUN apt-get update && apt-get install -y libffi-dev
+# PyNaCl のビルドに必要な libffi-dev を先に入れる
+RUN apt-get update && apt-get install -y libffi-dev gcc
 
+# pip のアップグレード
+RUN pip install --upgrade pip
+
+# ライブラリインストール
+RUN pip install -r requirements.txt
 
 CMD ["python", "bot.py"]
