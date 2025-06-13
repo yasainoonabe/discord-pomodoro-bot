@@ -3,7 +3,6 @@ FROM python:3.11-slim
 WORKDIR /app
 COPY . /app
 
-# 先にビルドに必要なOSパッケージをインストール
 RUN apt-get update && apt-get install -y \
     build-essential \
     libffi-dev \
